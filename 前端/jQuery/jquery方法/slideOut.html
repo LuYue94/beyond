@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		dt,dd{
+			width: 100px;
+			height: 50px;
+			background-color: royalblue;
+			list-style: none;
+		}
+		ul{
+			height: 100px;
+			width: 100px;
+			overflow: hidden;
+		}
+	</style>
+	<body>
+		<dl>
+			<dt></dt>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+		</dl>
+	</body>
+	<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("dt").click(function(){
+			$('dl').slideDown();
+		});
+	</script>
+</html>

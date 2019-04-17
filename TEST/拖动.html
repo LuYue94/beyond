@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#drag{
+				float: left;
+				width: 200px;
+				height: 200px;
+				background-color: lightblue;
+				position: relative;
+				z-index: 0;
+			}
+			#right{
+				float: left;
+				margin: 20px;
+			}
+			#dragline{
+				position: absolute;
+				top: 0;
+				right: 0;
+				height: 100%;
+				width: 10px;
+				background-color: red;
+			}
+			#dragline:hover{
+				cursor: move;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="drag">
+			
+			<div id="dragline"></div>
+		</div>
+		<div id="right">
+			<br /><br />
+			<input type="" name="" id="" value="" /><br /><br />
+			<input type="" name="" id="" value="" />
+		</div>
+		<script type="text/javascript">
+			var drag = document.getElementById("dragline");
+			var wrap = document.getElementById("drag");
+			
+			function tdest(){
+				console.log(fuck);
+				
+			}
+			drag.onmousedown = function(e){
+				var e=e||window.event;
+				var preX = e.clientX;
+				var preWidth = parseInt(getComputedStyle(wrap).width);
+				console.log(preWidth);
+				document.onmousemove = function(e){
+					var e = e||window.event;
+					var moveX = e.clientX - preX;
+					wrap.style.width = preWidth + moveX + 'px';
+				}
+				document.onmouseup = function(){
+					document.onmousemove = null;
+					document.onmouseup = null;
+				}
+			}
+			
+			
+		</script>
+	</body>
+</html>

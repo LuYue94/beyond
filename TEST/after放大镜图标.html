@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		div {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			border: 5px solid #333;
+			position: relative;
+			background: red;
+		}
+		
+		div::after {
+			content: '';
+			display: block;
+			width: 8px;
+			height: 60px;
+			border-radius: 5px;
+			background: #333;
+			position: absolute;
+			right: -22px;
+			top: 38px;
+			transform: rotate(-45deg);
+		}
+	</style>
+
+	<body>
+		<div id="">
+			
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script type="text/javascript">
+			// function list(){
+			// this.a = function(){
+			// console.log("a");
+			// };
+			// this.b = function(){
+			// console.log("b");
+			// };
+			// this.c = function(){
+			// console.log("c");
+			// };
+			// this.d = function(){
+			// console.log("d");
+			// };
+			// }
+			// 
+			// var config = {
+			// a:1,
+			// b:2,
+			// c:3,
+			// d:4
+			// }
+			// 
+			// var obj = new list();
+			// for (var item in config) {
+			// obj[item]();
+			// }
+
+			// var list = {
+			// a : function(){
+			// console.log("a");
+			// },
+			// b : function(){
+			// console.log("b");
+			// },
+			// c : function(){
+			// console.log("c");
+			// },
+			// d : function(){
+			// console.log("d");
+			// }
+			// }
+			// 
+			// var config = {
+			// a:1,
+			// b:2,
+			// c:3,
+			// d:4
+			// }
+			// 
+			// for (var item in config) {
+			// list[item]();
+			// }
+			var obj = {
+				fn: function() {
+					var config = {
+						a: 1,
+						b: 2,
+						c: 3,
+						d: 4
+					}
+
+					for(var item in config) {
+						this.list[item]();
+					}
+				},
+				list: {
+					a: function() {
+						console.log("a");
+					},
+					b: function() {
+						console.log("b");
+					},
+					c: function() {
+						console.log("c");
+					},
+					d: function() {
+						console.log("d");
+					}
+				}
+			}
+			obj.fn();
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+        
+    <img src="" class="img-circle headImg" alt="User Image">
+    <canvas id="headImg" style="display:none"></canvas>
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        textToImg("dfsf")
+
+        function textToImg(name) {
+            var uname = name;
+            var name = uname.charAt(0);
+            var fontSize = 30;
+            var fontWeight = 'bold';
+
+            var canvas = document.getElementById('headImg');
+            // var img1 = document.getElementByClass('headImg');
+            canvas.width = 60;
+            canvas.height = 60;
+            var context = canvas.getContext('2d');
+            context.fillStyle = '#7cdbca';
+            context.strokeStyle = '#1cad90';
+            context.lineWidth = 1;
+            // context.fillRect(0, 0, canvas.width, canvas.height);
+            context.arc(canvas.width/2, canvas.height/2, canvas.width / 2, 0, 2*Math.PI)
+            context.fill()
+            context.stroke()
+
+            context.fillStyle = '#605CA8';
+            context.font = fontWeight + ' ' + fontSize + 'px sans-serif';
+            context.textAlign = 'center';
+            context.textBaseline = "middle";
+            context.fillText(name, fontSize, fontSize);
+            $('.headImg').attr('src', canvas.toDataURL("image/png"));
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.ifaxin-radio {
+			display: flex;
+			position: relative;
+			margin-left: 100px;
+		}
+
+		.ifaxin-radio input[type=radio] {
+			width: 20px;
+			height: 10px;
+			opacity: 0;
+		}
+
+		input[type='radio']:checked+.y {
+			background: #1ABC9C;
+			border: 1px solid #1ABC9C;
+			
+		}
+
+		.y {
+			background: #EEF2F5;
+			border: 1px solid #C9D4DC;
+			border-radius: 50%;
+			box-sizing: border-box;
+			cursor: pointer;
+			display: block;
+			height: 14px;
+			margin-top: 3px;
+			margin-right: 10px;
+			position: relative;
+			font-size: 12px;
+			width: 14px;
+		}
+
+		input[type='radio']:active+.y,
+		input[type='radio']:focus+.y {
+			border-color: lightblue;
+		}
+
+		input[type='radio']:checked+.y::before {
+			content: "✓ ";
+			position: absolute;
+			color: white;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+	</style>
+</head>
+
+<body>
+
+	<label class="ifaxin-radio" for="radio">
+		<input type="radio" id="radio">
+		<span class="y"></span>
+		<span>ddddd</span>
+	</label>
+</body>
+
+</html>

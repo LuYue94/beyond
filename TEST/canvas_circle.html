@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<div id="ccc">
+
+</div>
+
+<body>
+
+    <script>
+        /**
+         * LBS drawRing 
+         * Date: 2015-04-24
+         * ==================================
+         * opts.parent 插入到哪里 一个JS元素对象
+         * opts.width 宽度 = 2* (半径+弧宽)  
+         * opts.radius 半径
+         * opts.arc 弧宽
+         * opts.perent 百分比 
+         * opts.color 弧渲染颜色 [底色,进度色]
+         * opts.textColor 文字渲染颜色
+         * opts.textSize 文字渲染大小
+         * opts.animated 是否以动画的方式绘制 默认false
+         * opts.after 绘制完成时执行函数
+         * ==================================
+         **/
+        drawRing({
+            perent: 60,
+            width:200,
+            radius:90
+        });
+
+        function drawRing(opts) {
+            var _opts = {
+                    parent: document.getElementById('ccc'),
+                    width: 100,
+                    radius: 45,
+                    arc: 8,
+                    perent: 100,
+                    color: ['#ccc', '#042b61'],
+                    textColor: '#000',
+                    textSize: '14px',
+                    animated: false,
+                    after: function () {}
+                },
+                k;
+            for (k in opts) _opts[k] = opts[k];
+
+            var parent = _opts.parent,
+                width = _opts.width,
+                radius = _opts.radius,
+                arc = _opts.arc,
+                perent = parseFloat(_opts.perent),
+                color = _opts.color,
+                textSize = _opts.textSize,
+                textColor = _opts.textColor,
+                c = document.createElement('canvas'),
+                ctx = null,
+                x = 0,
+                animated = _opts.animated,
+                after = _opts.after;
+
+            parent.appendChild(c);
+            ctx = c.getContext("2d");
+            ctx.canvas.width = width;
+            ctx.canvas.height = width;
+
+            function clearFill() {
+                ctx.clearRect(0, 0, width, width);
+            }
+
+            function fillBG() {
+                ctx.beginPath();
+                ctx.lineWidth = arc;
+                ctx.strokeStyle = color[0];
+                ctx.arc(width / 2, width / 2, radius, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+
+            function fillArc(x) {
+                ctx.beginPath();
+                ctx.lineWidth = arc;
+                ctx.strokeStyle = color[1];
+                ctx.arc(width / 2, width / 2, radius, -90 * Math.PI / 180, (x * 3.6 - 90) * Math.PI / 180);
+                ctx.stroke();
+            }
+
+            function fillText(x) {
+                ctx.font = textSize + ' Arial';
+                ctx.fillStyle = textColor;
+                ctx.textBaseline = "middle";
+                ctx.textAlign = 'center';
+                ctx.fillText(x.toFixed(1) + '%', width / 2, width / 2 - 10);
+            }
+
+            function fillText2() {
+                ctx.font = textSize + ' Arial';
+                ctx.fillStyle = textColor;
+                ctx.textBaseline = "middle";
+                ctx.textAlign = 'center';
+                ctx.fillText('复读复读', width / 2, width / 2 + 10);
+            }
+
+            function fill(x) {
+                fillBG();
+                fillArc(x);
+                fillText(x);
+                fillText2();
+            }
+
+            if (!animated) return fill(perent);
+
+            fill(x);
+            ! function animate() {
+                if (++x > perent) return after && after();
+                setTimeout(animate, 10);
+                clearFill();
+                fill(x);
+            }();
+        }
+    </script>
+</body>
+
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>canvas圆环进度</title>
+	<link rel="stylesheet" href="">
+	<style>
+ 	*{padding: 0; margin: 0; }
+ 	.circle{width: 200px;height: 200px;margin: 20em auto;position: relative;}
+ 	canvas{display: block;margin: 0;position: absolute;background: white;left: 0;top: 0;}
+ 	#canvas_1{z-index: 1 }
+ 	#canvas_2{z-index: 2; background: transparent;transform:rotate(-90deg); }
+	</style>
+</head>
+<body>
+	<div class="circle">
+		<canvas id="canvas_1" width="200" height="200"></canvas>
+		<canvas id="canvas_2" width="200" height="200"></canvas>
+	</div>
+	<script>
+	function inte(percent) {
+		var canvas_1 = document.querySelector('#canvas_1');
+		var canvas_2 = document.querySelector('#canvas_2');
+		var ctx_1 = canvas_1.getContext('2d');
+		var ctx_2 = canvas_2.getContext('2d');
+		ctx_1.lineWidth = 10;
+		ctx_1.strokeStyle = "#ccc";
+		//画底部的灰色圆环
+		ctx_1.beginPath();
+		ctx_1.arc(canvas_1.width / 2, canvas_1.height / 2, canvas_1.width / 2 - ctx_1.lineWidth / 2, 0, Math.PI * 2, false);
+		ctx_1.closePath();
+		ctx_1.stroke();
+		if (percent < 0 || percent > 100) {
+			throw new Error('percent must be between 0 and 100');
+			return
+		}
+		ctx_2.lineWidth = 10;
+		ctx_2.strokeStyle = "#f90";
+		var angle = 0;
+		var timer;
+		(function draw() {
+			timer = requestAnimationFrame(draw);
+			ctx_2.clearRect(0, 0, canvas_2.width, canvas_2.height)
+			//百分比圆环
+			ctx_2.beginPath();
+			ctx_2.arc(canvas_2.width / 2, canvas_2.height / 2, canvas_2.width / 2 - ctx_2.lineWidth / 2, 0, angle * Math.PI / 180, false);
+			angle++;
+			var percentAge = parseInt((angle / 360) * 100)
+			if (angle > (percent / 100 * 360)) {
+				percentAge = percent
+				window.cancelAnimationFrame(timer);
+			};
+			ctx_2.stroke();
+			ctx_2.closePath();
+			ctx_2.save();
+			ctx_2.beginPath();
+			ctx_2.rotate(90 * Math.PI / 180)
+			ctx_2.font = '30px Arial';
+			ctx_2.fillStyle = 'red';
+			var text = percentAge + '%';
+			ctx_2.fillText(text, 80, -90);
+			ctx_2.closePath();
+			ctx_2.restore();
+		})()
+	}
+	window.onload = inte(60);
+	</script>
+</body>
+</html> -->

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="jquery-1.11.0.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        /**
+         * 工厂模式
+         * 没有解决对象的识别问题，不能判断一个对象的类型
+         */
+        function createPerson(name, age, job) {
+            var o = new Object();
+            o.name = name;
+            o.job = job;
+            o.age = age;
+            o.sayName = function() {
+                console.log("alert");
+            };
+            return o;
+        }
+        var person1 = createPerson("Nick",20,"software");
+        //var person1 = new createPerson("Nick",20,"software");
+
+        /**
+         * 构造函数模式1
+         * 每个方法都要在每个实例上重新创建一遍
+         */
+        function Person(name, age, job) {
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.sayname = new Funtion("console.log(this.name)");
+        }
+        var person1 = new Person("Nick",20,"software");
+
+        /**
+         * 构造函数模式2
+         * 这样sayName方法就成了全局的方法，没有封装性；
+         */
+        function Person(name, age, job) {
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.sayname = sayName;
+        }
+        function sayName(){
+            console.log(this.name);
+        }
+
+        var person1 = new Person("Nick",20,"software");
+
+        /**
+         * 原型模式1
+         * 对象的属性由所有实例共享
+         */
+        function Person(){
+
+        }
+        Person.prototype.name = name;
+        Person.prototype.age = age;
+        Person.prototype.job = job;
+        Person.prototype.sayName = function(){
+            console.log(this.name);
+        }
+
+        var person1 = newPerson();
+
+        /**
+         * 原型模式2
+         * 简洁的写法
+         * 这种对象字面量的写法会重写Person.prototype，即覆盖默认的原型
+         */
+        function Person(){
+
+        }
+        Person.prototype = {
+            constructor:Person,
+            name:"Nick",
+            age:"29",
+            job:"software",
+            sayName:function(){
+                console.log(this.name);
+            }
+        }
+
+        var person1 = newPerson();
+
+
+        /**
+         * 组合使用构造函数模式和原型模式
+         * 构造函数模式用于定义实例属性
+         * 原型模式用于定义方法和共享的属性
+         * 节省内存，支持构造传参
+         */
+        function Person(name,age,job){
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.friends = ["jack","jhon"];
+        }
+        Person.prototype = {
+            constructor : Person,
+            sayName : function(){
+                console.log(this.name);
+            }
+        }
+
+        var person1 = new Person('Nick',29,'software');
+
+
+        /**
+         * 动态原型模式
+         * 整合
+         */
+        function Person(name,age,job){
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.friends = ["jack","jhon"];
+            if (typeof this.sayName != "function") {
+                Person.prototype.sayName = function () {
+                    console.log(this.name);
+
+                }
+            }
+        }
+
+        var person1 = new Person('Nick',29,'software');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+{
+    "res=>(),err =>()": {
+        "prefix": "ress",
+        "body": [
+            "res => {",
+            "  console.log('res :', res);",
+            "  $1",
+            "},",
+            "err => {",
+            "  console.log('err :', err);",
+            "}"
+        ],
+        "description": "res=>(),err =>()"
+    },
+    "if(){}else{}": {
+        "prefix": "iff",
+        "body": [
+            "if($1){",
+            "  $2",
+            "}"
+        ],
+        "description": "if/else"
+    }
+}

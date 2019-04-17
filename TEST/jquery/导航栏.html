@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		a {
+			text-decoration: none;
+			color: white;
+			display: block;
+			width: 100px;
+			height: 30px;
+			background-color: royalblue;
+		}
+		
+		li {
+			list-style: none;
+		}
+		
+		.current {
+			background: red;
+		}
+		
+		ul {
+			display: none;
+		}
+	</style>
+
+	<body>
+		<li class="level1">
+			<a href="#none">1</a>
+			<ul class="level2">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+		</li>
+		<li class="level1">
+			<a href="#none">2</a>
+			<ul class="level2">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+		</li>
+		<li class="level1">
+			<a href="#none">3</a>
+			<ul class="level2">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+		</li>
+		<li class="level1">
+			<a href="#none">4</a>
+			<ul class="level2">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+		</li>
+	</body>
+	<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('.level1 > a').click(function() {
+			$(this).addClass('current').next().show(500).parent().siblings().children('a').removeClass('current').next().hide(500);
+		})
+	</script>
+
+</html>

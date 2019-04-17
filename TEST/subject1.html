@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		
+		//node
+		function Node(data){
+			this.data = data;
+			this.parent = null;
+			this.children = [];
+		}
+		
+		function Tree(data){
+			var node = new Node(data);
+			this._root = node;
+		}
+		
+		// 深度优先遍历
+		Tree.prototype.traverseDF = function(callback){
+			(function recurse(currentNode){
+				for(var i=0,length = currentNode.children.length;i<length;i++){
+					recurse(currentNode.children[i]);
+				}
+				callback(currentNode);
+			})(this._root);
+		}
+		
+		// 搜索
+		Tree.prototype.contains = function(callback, traversal){
+			traversal.call(this,callback);
+		}
+		
+		Tree.prototype.add = function(data,toData,traversal){
+			var child = new Node(data);
+				parent = null,
+				callback = function(node){
+					if(node.data === toData){
+						parent = node;
+					}
+				};
+			
+			this.contains(callback,traversal);
+			
+			if(parent){
+				parent.children.push(child);
+				child.parent = parent;
+			}else{
+				console.log("cannot add node to a non-existent parent");
+			}
+		}
+		
+		//构建树
+		var tree = new Tree("A");
+		tree.add("B","A",tree.traverseDF);
+		tree.add("C","A",tree.traverseDF);
+		tree.add("D","A",tree.traverseDF);
+		
+		tree.add("E","B",tree.traverseDF);
+		tree.add("F","B",tree.traverseDF);
+		tree.add("G","B",tree.traverseDF);
+		
+		tree.add("K","F",tree.traverseDF);
+		tree.add("L","F",tree.traverseDF);
+		tree.add("N","F",tree.traverseDF);
+		
+		tree.add("R","N",tree.traverseDF);
+		tree.add("S","N",tree.traverseDF);
+		tree.add("T","N",tree.traverseDF);
+		
+		tree.add("H","D",tree.traverseDF);
+		tree.add("I","D",tree.traverseDF);
+		tree.add("J","D",tree.traverseDF);
+		
+		tree.add("O","H",tree.traverseDF);
+		tree.add("P","H",tree.traverseDF);
+		tree.add("Q","H",tree.traverseDF);
+		
+		console.log(tree._root);
+
+
+//		tree.traverseDF(function(node){
+//			console.log(node.data);
+//		})
+
+		
+		//最短路径
+		//向上搜索，分别保存两个节点的祖先节点数组(包括自己)，直到遇到相同的 祖先节点，将他们拼接起来
+		function path(nodeA,nodeB,tree){
+			callback1 = function(node){
+					if(node.data === nodeA){
+						nodeA = node;
+					}
+			};
+			callback2 = function(node){
+					if(node.data === nodeB){
+						nodeB = node;
+					}
+			};
+			tree.contains(callback1,tree.traverseDF);
+			tree.contains(callback2,tree.traverseDF);
+			
+			var parentListA = [],
+				parentListB = [],
+				consoleArr = [],
+				targetA,
+				targetB,
+				flag = true;
+
+			while(flag){
+				if(nodeA&&nodeA.data){
+					parentListA.push(nodeA.data);
+					nodeA = nodeA.parent;
+				}
+				if(nodeB&&nodeB.data){
+					parentListB.push(nodeB.data);
+					nodeB = nodeB.parent;
+				}
+				for (var i=0;i<parentListA.length;i++) {
+					for (var j=0;j<parentListB.length;j++) {
+						if(parentListA[i] === parentListB[j]){
+							console.log(parentListA,parentListB);
+							targetA = i;
+							targetB = j;
+							flag = false;
+							break;
+						}
+					}
+				}
+			}
+			
+			for(var i=0;i<=targetA;i++){
+				consoleArr.push(parentListA[i]);
+			}
+			parentListB = parentListB.reverse();
+			for(var j=0;j<targetB;j++){
+				consoleArr.push(parentListB[j+1]);
+			}
+			
+			console.log(consoleArr.join("->"));
+		}
+		
+		//path("Q","G",tree);
+		path("G","R",tree);
+	</script>
+</html>

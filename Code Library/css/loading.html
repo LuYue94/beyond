@@ -1,0 +1,70 @@
+<div class="ball-scale-multiple" ng-if="vm.loading">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<style>
+  .ball-scale-multiple {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    text-align: center;
+    -webkit-transform: translateY(-30px);
+    -ms-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+
+  .ball-scale-multiple.abs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  .ball-scale-multiple.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.1);
+    min-height: 300px;
+    text-align: center;
+    -webkit-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+
+  .ball-left {
+    margin-left: -35px;
+  }
+
+  .ball-scale-multiple>div:nth-child(2) {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+  }
+
+  .ball-scale-multiple>div:nth-child(3) {
+    -webkit-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+  }
+
+  .ball-scale-multiple>div {
+    background-color: #1ABC9C;
+    border-radius: 100%;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 60px;
+    height: 60px;
+    margin-left: -30px;
+    margin-top: -30px;
+    opacity: 0;
+    margin: 0;
+    -webkit-animation: ball-scale-multiple 1s 0s linear infinite;
+    animation: ball-scale-multiple 1s 0s linear infinite;
+  }
+
+</style>

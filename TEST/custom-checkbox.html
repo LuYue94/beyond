@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .custom-checkbox label {
+            font-weight: 500;
+            display: inline-block;
+            width: 100px;
+        }
+
+        .custom-checkbox [type="checkbox"]:not(:checked),
+        .custom-checkbox [type="checkbox"]:checked {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .custom-checkbox [type="checkbox"]:not(:checked)+label,
+        .custom-checkbox [type="checkbox"]:checked+label {
+            position: relative;
+            padding-left: 25px;
+            cursor: pointer;
+        }
+
+        .custom-checkbox [type="checkbox"]:not(:checked)+label:before,
+        .custom-checkbox [type="checkbox"]:checked+label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ddd;
+            background: #fefefe;
+            border-radius: 3px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, .3)
+        }
+
+        .custom-checkbox [type="checkbox"]:checked+label:before {
+            border-color: #1ABC9C;
+        }
+        /* checked mark aspect */
+
+        .custom-checkbox [type="checkbox"]:not(:checked)+label:after,
+        .custom-checkbox [type="checkbox"]:checked+label:after {
+            content: '\2713';
+            position: absolute;
+            top: 0;
+            left: 4px;
+            bottom: -9px;
+            font-size: 18px;
+            color: #09ad7e;
+            transition: all .2s;
+        }
+        /* checked mark aspect changes */
+
+        .custom-checkbox [type="checkbox"]:not(:checked)+label:after {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .custom-checkbox [type="checkbox"]:checked+label:after {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        /* disabled checkbox */
+
+        .custom-checkbox [type="checkbox"]:disabled:not(:checked)+label:before,
+        [type="checkbox"]:disabled:checked+label:before {
+            box-shadow: none;
+            border-color: #bbb;
+            background-color: #ddd;
+        }
+
+        .custom-checkbox [type="checkbox"]:disabled:checked+label:after {
+            color: #999;
+        }
+
+        .custom-checkbox [type="checkbox"]:checked:focus+label:before,
+        [type="checkbox"]:not(:checked):focus+label:before {
+            border: 2px solid #1ABC9C;
+        }
+
+        .custom-checkbox label:hover:before {
+            border: 2px solid #1ABC9C!important;
+        }
+
+        .custom-checkbox [type="checkbox"]:disabled:checked+label:hover:before {
+            border-color: #bbb!important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="custom-checkbox">
+        <input type="checkbox" id="checkbox" />
+        <label for="checkbox">审核失败</label> <a style="cursor: pointer;">详情</a>)
+    </div>
+
+</body>
+
+</html>

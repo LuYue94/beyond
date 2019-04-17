@@ -1,0 +1,79 @@
+<script>
+    'use strict'
+
+    // function callee() {
+    //     var sCalleeName, sCallerName; {
+    //         let reg = /(\w+)@|at ([^(]+) \(/g,
+    //             err = new Error(),
+    //             stack = err.stack;
+    //         // "Error
+    //         //     at callee (file:///D:/WORK/beyond/TEST/%E8%8E%B7%E5%8F%96%E5%87%BD%E6%95%B0%E5%90%8D.html:7:23)
+    //         //     at caller (file:///D:/WORK/beyond/TEST/%E8%8E%B7%E5%8F%96%E5%87%BD%E6%95%B0%E5%90%8D.html:24:9)
+    //         //     at file:///D:/WORK/beyond/TEST/%E8%8E%B7%E5%8F%96%E5%87%BD%E6%95%B0%E5%90%8D.html:27:5"
+
+
+    //         let callee = reg.exec(stack);
+    //         let caller = reg.exec(stack);
+
+
+    //         console.log(stack)
+    //         reg.exec(stack)
+    //         console.log(caller);
+    //         sCalleeName = callee[1] || callee[2];
+    //         sCallerName = caller[1] || caller[2];
+    //         console.log(sCalleeName, sCallerName);
+    //     }
+    // };
+
+    // function caller() {
+    //     callee();
+    // };
+
+
+
+
+    // function test() {
+    //     caller(); // caller
+    // }
+    //     test();
+
+    // function callee() {
+    //     try {
+    //         throw new Error()
+    //     } catch (e) {
+    //         // console.log(e.stack)
+    //         var arr = e.stack.split(' at ')
+    //         arr = arr.splice(1,arr.length-2)
+    //         arr = arr.map(function(value,index,array){
+    //             return array[index] = value.split(' (')[0]
+    //         })
+    //         console.log(arr)
+    //         return arr
+    //     }
+    // }
+
+    // function caller() {
+    //     var stackArray = callee() // ["callee", "caller"]
+    //     console.log(stackArray[1])
+    //     document.write(stackArray[1])
+    // }
+    // caller()
+
+
+
+    // es6
+    const autoFnName = Fn => {
+        return function () {
+            Fn.call(this,...rest, Fn.name)
+        }
+    }
+    var rest = [1,2,3]
+    function test(...rest) {
+        console.log(rest)
+        console.log(rest.pop())
+    }
+
+    const fn = autoFnName(test)
+
+    fn()
+</script>

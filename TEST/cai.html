@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="lib/jquery-3.1.1.min.js"></script>
+    <script>
+
+        $.ajax({
+            type: "post",
+            url: "https://www.jindi163.com:8443/JDLot/lot/type/pagelist",
+            data: { "table_name": "newtxffc", "PageNum": "1", "PageSize": 100 },
+            async: true,
+            contentType: "application/json",
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+            }
+        })
+
+        var arr = [292381423,
+            292400292,
+            292457108,
+            292478906,
+            292543618,
+            292564043,
+            292684552,
+            292709126,
+            292832931,
+            292832931,
+            292957303,
+            292965593,
+            293064728,
+            293090842,
+            293145042,
+            293169823,
+            293208782,
+            293256233,
+            293289855,
+            293325524,
+            293359064,
+            293391038,
+            293412690,
+            293442545,
+            293468632,
+            293470470,
+            293454153,
+            293448361,
+            293450352,
+            293455300,
+            293455064,
+            293457691,
+            293456762,
+            293153649,
+            293139656,
+            293096145,
+            293063925,
+            293032333,
+            292992276,
+            292969552,
+            292923034,
+            292878615,
+            292791383,
+            292727678,
+            292664254,
+            292603347,
+            292540827,
+            292459894,
+            292419225,
+            292379480,
+            292364199,
+            292300438,
+            292286622,
+            292186597,
+        ]
+
+        var res = []
+        for (var i = 0; i < arr.length; i++) {
+            var temp = arr[i].toString().split('')
+            var r = 0
+            temp.forEach(function (val, idx, arr) {
+                r += Number(val);
+            }, 0);
+
+
+            var qianwu = temp.slice(0, 5)
+            var housi = temp.slice(5)
+            var qd = 0, hd = 0
+            qianwu.forEach(function (val, idx, arr) {
+                qd += Number(val);
+            }, 0);
+            housi.forEach(function (val, idx, arr) {
+                hd += Number(val);
+            }, 0);
+
+            var rd = r % 10 + housi.join("")
+
+            var t = []
+            rd.split('').forEach(function (val, idx, arr) {
+                t.push(val % 2 == 1 ? "单" : "双")
+            }, 0);
+
+
+            var obj = {
+                qianwu: qianwu.join(""),
+                housi: housi.join(""),
+                qd: (qd) % 2 == 1 ? "单" : "双",
+                rd: (Number(rd)) % 2 == 1 ? "单" : "双",
+                hd: (hd) % 2 == 1 ? "单" : "双",
+                res: rd,
+                t: t.join('')
+            }
+
+            res.push(obj)
+        }
+        console.table(res)
+
+    </script>
+</body>
+
+</html>

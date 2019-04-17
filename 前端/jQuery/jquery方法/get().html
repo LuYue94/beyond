@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+	</body>
+	<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			console.log($('li'));//jquery对象
+			console.log($('li').get());//Array
+			console.log($('li').get(0));//Dom对象
+			console.log(document.getElementsByTagName('li'));//get()
+			console.log(document.getElementsByTagName('li')[0]);//get(0)
+		})
+	</script>
+</html>

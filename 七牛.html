@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="TEST/jquery-1.11.0.js"></script>
+    <script src="https://unpkg.com/qiniu-js@2.5.4/dist/qiniu.min.js"></script>
+</head>
+
+<body>
+    <input type="file" id="select" name="select" onchange="selectFile(this.files)" />
+</body>
+<script>
+    var imgUrl = ''
+    var img = null;
+    var key = '';
+    var token = 'IdpcZ-QNXZHZ9Kx8SoBWeHPtyTmqe8k0JbibN4G_:oTgblw5i2_aAyC0TaFMkH1tXFWQ=:eyJzY29wZSI6Im9wZW4taW1hZ2UiLCJkZWFkbGluZSI6MTU1MTc3ODc0OH0='
+    var config = {
+        region: qiniu.region.z2
+    }
+    var putExtra = {
+        fname: "",
+        params: {},
+        mimeType: ["image/png", "image/jpeg", "image/gif"]
+    };
+    var observer = {
+        next(res) {
+            // console.log(res)
+        },
+        error(err) {
+            // console.log(err)
+            alert(err)
+        },
+        complete(res) {
+            imgUrl = 'https://image-qiniu.52jtg.com//'+res.hash
+            console.log(imgUrl)
+        }
+    }
+
+
+    function selectFile(files) {
+        console.log(files)
+        if (files.length > 0) {
+            img = files[0]
+            key = files[0].name
+
+            var observable = qiniu.upload(img, key, token, putExtra, config)
+            var subscription = observable.subscribe(observer) // 上传开始
+        }
+    }
+
+</script>
+
+</html>

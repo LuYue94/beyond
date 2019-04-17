@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			var GLOBAL_ID = 0;
+			
+			function Item(age){
+				this.id = GLOBAL_ID++;
+				this.age = age?age:0;
+				this.next = null;
+				this.isRemove = false;
+			}
+			
+			function Cache(){
+				this.itemContainer = [];
+				
+			}
+			
+
+			function addToContainer(item,cache){
+				var list = cache.itemContainer;
+				//可插入位置 0 to list.length
+				var randomIndex = Math.floor(Math.random()*(list.length+1));
+				list.splice(randomIndex,0,item);
+				//first
+				if(randomIndex == 0){
+					item.next = list[1];
+				}else if(randomIndex == list.length -1){
+					list[list.length-2].next = list[list.length-1];
+				}else{
+					item.next = list[randomIndex+1];
+					list[randomIndex-1].next = item;
+				}
+				//console.log(list);
+			}
+			//age为随机数或0
+			Cache.prototype.add = function(ageIsRandom){
+				age = ageIsRandom?Math.floor(Math.random()*10):0;
+				var item = new Item(age);
+				//最多容纳 100
+				if (this.itemContainer.length >= 100) {
+					list[0].isRemove = true;
+					this.deleteItem();
+				}
+				if(this.itemContainer.length !== 0){
+					//随机插入Cache中
+					addToContainer(item,this);
+				}else{
+					this.itemContainer.push(item);
+				}
+			}
+			Cache.prototype.old = function(){
+				var list = this.itemContainer;
+				var flag = false;
+				var onlyone =true;
+				for (var i=0;i<list.length;i++) {
+					list[i].age++;
+					if(list[i].age>10&&onlyone){
+						list[i].isRemove = true;
+						flag = true;
+						onlyone = false;//只能淘汰一个
+					}
+				}
+				if(!flag){
+					if(list.length>=100){
+						list[0].isRemove = true;
+						this.deleteItem();
+					}
+				}
+			}
+			
+			Cache.prototype.deleteItem = function(){
+				var list = this.itemContainer;
+				for (var i=0;i<list.length;i++) {
+					if (list[i].isRemove) {
+						if (i === 0) {
+							
+						}else if(i === list.length -1){
+							list[list.length-1].next = null;
+						}else{
+							list[i-1].next = list[i].next;
+						}
+					}
+				}
+				
+				//从后往前删
+				for (var i=list.length;i>0;i--) {
+					if(list[i-1].isRemove){
+						list.splice(i-1,1);
+					}
+				}
+			}
+			
+			var cache = new Cache();
+			//添加50个
+			for (var i=0;i<5;i++) {
+				cache.add(true);
+			}
+			var lifetime = 0;
+			var timer = setInterval(function(){
+				cache.old();
+				cache.add(false);
+				lifetime++;
+				if (lifetime>200) {
+					timer = null;
+				}
+				
+				var arr1 = [],
+					arr2 = [];
+				var list = cache.itemContainer;
+				for(var i=0;i<list.length;i++){
+					arr1.push(list[i].id);
+					arr2.push(list[i].age);
+				}
+				console.log(arr1.join('-'));
+				console.log(arr2.join('-'));
+				console.log(list);
+			},1000);
+			
+			
+			
+		</script>
+	</body>
+</html>

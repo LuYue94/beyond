@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{position: relative;}
+			#a{
+				position: absolute;top: 20px;left: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="a">
+			6666
+		</div>
+		<button id="btn">btn</button>
+		<script type="text/javascript">
+			var timer = null;
+			function start(){
+				console.log("1");
+				var a = document.getElementById("a");
+				if (a.offsetLeft==200) {
+					clearInterval(timer);
+				}else{
+					a.style.left = a.offsetLeft +  10 + 'px';
+				}
+			}
+			
+			
+			
+			document.getElementById("btn").onclick = function(){
+				timer = setInterval(start,100);
+				console.log(a.offsetLeft);
+			}
+		</script>
+	</body>
+</html>

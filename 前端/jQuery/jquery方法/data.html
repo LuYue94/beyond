@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="" data-blah="00">
+			
+		</div>
+	</body>
+	<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		console.log($("div").data("blah"));  // 00      如果没有设置则为undefined
+		console.log($("div").data("blah", "hello"));  // blah设置为hello  不会显示在elements上，隐式的数据
+		console.log($("div").data("blah"));  // hello
+
+	</script>
+</html>

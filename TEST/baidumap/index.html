@@ -1,0 +1,202 @@
+<!--  created by luyue , 2017-3-28  -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	 <head>
+	    <meta name="generator" content="HTML Tidy for Windows (vers 14 February 2006), see www.w3.org" />
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="generator" content="MediaWiki 1.16.1" />
+	    <meta http-equiv="x-ua-compatible" content="ie=7" />
+	    <title>创建地图-百度地图生成器</title>
+		<meta name="keywords" content="地图生成器" />
+	    <link rel="search" type="application/opensearchdescription+xml" href="/wiki/map/opensearch_desc.php" title="地图开放平台 (zh-hans)" />
+	    <link rel="alternate" type="application/atom+xml" title="地图开放平台的Atom订阅" href="/wiki/map/index.php?title=%E7%89%B9%E6%AE%8A:%E6%9C%80%E8%BF%91%E6%9B%B4%E6%94%B9&amp;feed=atom" />
+	    <link rel = "stylesheet" href = "./css/style.css?logo" type = "text/css"/>
+	</head>
+
+	<body>
+		<!--头部区域-->
+
+		<!--头部区域 end-->
+
+		<!--主体部分-->
+		<div class = "mcontainer">
+			
+			<h1>第一步 创建地图</h1>
+			<div class = "draw_map l">
+				<div class = "nav l">
+					<ul>
+						<li>
+							<div  class="current list-item" >&nbsp;1. 定位中心点</div>
+							<div id = "set_center" class = "show l mt-10">
+								<div id = "setCity" style = "height:26px;">
+									<div class = "show">当前城市：
+										<span id="current_city">北京市</span>
+										<span style = "color:#2f83c7; cursor:pointer;" id = "change_city" onclick = "setCity()"> 切换</span>
+									</div>
+									<div class = "hidden">
+										<input id = "input_city" type = "text" value = "请输入城市名称" style = "width: 115px" onclick = "this.value = ''" onkeyup = "citynameKeyUp()"/>
+										<span class = "btn_blue" onclick = "confirmCity()">确定</span>
+										<span class = "btn_blue" onclick = "exitSetCity()">取消</span>
+									</div>
+								</div>
+								
+								<input id = "input_site" type = "text" value = "输入地名、大厦快速定位" onclick = "this.value=''" onkeyup = "siteKeyUp()" style="width:165px"/>
+								<span class = "btn_blue" onclick = "searchLocation()">查找</span>
+								<p>当前地图中心点经纬度：</p>
+								<div style="margin-bottom:10px;">
+									<label class="l" style="line-height:22px">X：</label>
+									<div id = "input_x" style = "line-height:20px; width: 110px;display:block; margin-left:30px">116.403874</div>
+								</div>
+								<div style="margin-bottom:10px;">
+									<label class="l" style="line-height:22px">Y：</label>
+									<div id = "input_y" style = "line-height:20px; width: 110px;margin-left: 30px;">39.914889</div>
+								</div>
+								<div>
+									<label class="l" style="line-height:22px">当前地图级别：</label>
+									<div id = "input_zoom" style = "line-height:20px; width: 20px;border:solid 1px #626262;background:#eee;margin-left: 90px;">12</div>
+								</div>
+							</div>
+
+						</li>
+
+						<li>
+							<div  class="list-item" >&nbsp;2. 设置地图</div>
+							<div id = "map_contorl" class = "hidden">
+							<div class = "l mt-10" style = "margin-bottom:10px">
+								<div style = "width:70px;height:100%" class = "l"><h3>地图尺寸</h3> </div>
+								
+								<div class = "l" style = "height:100%;width:153px;">
+									宽度：<input id = "input_map_width" style = "width: 70px;margin-bottom:10px;" type = "text" value = "700" onkeyup = "resizeMap()"/> 像素
+									高度：<input id= "input_map_height" style = "width: 70px" type = "text" value = "550" onkeyup = "resizeMap()"/> 像素
+								</div> 
+							</div>
+							<div class = "l">
+								<div style = "width:70px;height:20px" class = "l"><h3>添加按钮</h3> </div>
+								<div class = "l" style = "height:100%;width:153px;">
+									<div class = "bg-gray">
+										<label ><input id = "input_add_nav" class = "cb" type = "checkbox" checked = "true" onclick = "addNavControl()"/>地图缩放</label><br>
+									</div>
+									<div class = "l" style = "">
+										<label style="float:left;height:25px;line-height:25px;dispaly:inline-block">样式：</label>
+										<div style = "width:100px; height: 45px " class = "l">
+											<label><input name = "nav_style" type = "radio" checked = "true" value ="BMAP_NAVIGATION_CONTROL_LARGE" onclick = "resetNavType()"/>标准</label>
+											<label><input name = "nav_style" type = "radio" value ="BMAP_NAVIGATION_CONTROL_SMALL" onclick = "resetNavType()"/>精简</label>
+											<label><input name = "nav_style" type = "radio" value ="BMAP_NAVIGATION_CONTROL_PAN" onclick = "resetNavType()"/>平移</label>
+											<label><input name = "nav_style" type = "radio" value ="BMAP_NAVIGATION_CONTROL_ZOOM" onclick = "resetNavType()"/>缩放</label>
+										</div>
+										<label style="float:left;height:25px;line-height:25px;dispaly:inline-block">位置：</label>
+										<div style = "width:100px; height: 45px " class = "l">
+											<label><input name = "nav_pos" type = "radio" checked = "true" value = "BMAP_ANCHOR_TOP_LEFT" onclick = "resetNavPos()"/>左上</label>
+											<label><input name = "nav_pos" type = "radio" value = "BMAP_ANCHOR_TOP_RIGHT" onclick = "resetNavPos()"/>右上</label>
+											<label><input name = "nav_pos" type = "radio" value = "BMAP_ANCHOR_BOTTOM_LEFT" onclick = "resetNavPos()"/>左下</label>
+											<label><input name = "nav_pos" type = "radio" value = "BMAP_ANCHOR_BOTTOM_RIGHT" onclick = "resetNavPos()"/>右下</label>
+										</div>
+									</div>
+
+									<div class = "bg-gray clearfix">
+										<label ><input id = "input_add_overview" class = "cb" type = "checkbox" checked = "true" onclick = "addOverviewControl()"/>地图缩略图</label><br/>
+									</div>
+									<div class = "l" style = "background:#fff">
+											<label style="float:left;height:25px;line-height:25px;dispaly:inline-block">状态：</label>
+										<div style = "width:100px; height: 25px " class = "l">
+											<label><input name = "overview_style" type = "radio" checked = "true" onclick = "resetView()"/>展开</label>
+											<label><input name = "overview_style" type = "radio" onclick = "resetView()"/>收起</label>
+										</div>
+										<label style="float:left;height:25px;line-height:25px;dispaly:inline-block">位置：</label>
+										<div style = "width:100px; height: 45px " class = "l">
+											<label><input name = "overview_pos" type = "radio" value = "BMAP_ANCHOR_TOP_LEFT" onclick = "resetOverviewPos()"/>左上</label>
+											<label><input name = "overview_pos" type = "radio" value = "BMAP_ANCHOR_TOP_RIGHT" onclick = "resetOverviewPos()"/>右上</label>
+											<label><input name = "overview_pos" type = "radio" value = "BMAP_ANCHOR_BOTTOM_LEFT" onclick = "resetOverviewPos()"/>左下</label>
+											<label><input name = "overview_pos" type = "radio" value = "BMAP_ANCHOR_BOTTOM_RIGHT" checked = "true"  onclick = "resetOverviewPos()"/>右下</label>
+										</div>
+									</div>
+
+									<div class = "bg-gray clearfix">
+										<label ><input id = "input_add_scale" class = "cb" type = "checkbox" checked = "true" onclick = "addScaleControl()"/>地图比例尺</label><br/>
+									</div>
+									<div class = "l" style = "background:#fff">
+										<label style="float:left;height:25px;line-height:25px;dispaly:inline-block">单位：</label>
+										<div style = "width:100px; height: 25px " class = "l">
+											<label><input name = "scale_style" type = "radio" checked = "true" value = "BMAP_UNIT_METRIC" onclick = "resetScaleUnit(this.value)"/>公制</label>
+											<label><input name = "scale_style" type = "radio"  value = "BMAP_UNIT_IMPERIAL" onclick = "resetScaleUnit(this.value)"/>英制</label>
+										</div>
+										<label style="float:left;height:25px;line-height:25px;dispaly:inline-block">位置：</label>
+										<div style = "width:100px; height: 45px " class = "l">
+											<label><input name = "scale_pos" type = "radio"  value = "BMAP_ANCHOR_TOP_LEFT" onclick = "resetScalePos()"/>左上</label>
+											<label><input name = "scale_pos" type = "radio" value = "BMAP_ANCHOR_TOP_RIGHT" onclick = "resetScalePos()"/>右上</label>
+											<label><input name = "scale_pos" type = "radio" value = "BMAP_ANCHOR_BOTTOM_LEFT" checked = "true" onclick = "resetScalePos()"/>左下</label>
+											<label><input name = "scale_pos" type = "radio" value = "BMAP_ANCHOR_BOTTOM_RIGHT" onclick = "resetScalePos()"/>右下</label>
+										</div>
+									</div>
+
+								</div> 
+							</div>
+							<div class = "l">
+								<div style = "width:70px;height:100%" class = "l"><h3>地图状态</h3> </div>
+								
+								<div class = "l" style = "height:100%;width:153px;">
+									<label><input id = "cb1" class = "cb" type = "checkbox" checked = "true" onclick = "resetScrollWhellZoom()"/>鼠标滚轮缩放</label><br/>
+									<label><input id = "cb2" class = "cb" type = "checkbox" checked = "true" onclick = "resetKeyboard()"/>键盘方向移动</label><br/>
+									<label><input id = "cb3" class = "cb" type = "checkbox" checked = "true" onclick = "resetDragging()"/>鼠标拖动地图</label><br/>
+									<label><input id = "cb4" class = "cb" type = "checkbox" checked = "true" onclick = "resetDoubleClickZoom()"/>鼠标双击放大</label><br/>
+								</div> 
+							</div>
+							
+						</div>
+
+						</li>
+
+
+						<li>
+							<div  class="list-item" >&nbsp;3. 添加标注</div>
+							<div class = "l hidden">
+							<div id = "add_overlay" class = "l mt-10">
+								<div id = "marker_nav">
+									<ul>
+										<li idx = "0" id = "ol_marker" class = "l " title = "点标记" onclick = "addMarker()"></li>
+										<li idx = "1" id = "ol_polygen" class = "l" title = "线标记" onclick = "addPolyline()"></li>
+										<li idx = "2" id = "ol_label" class = "l" title = "文字标记" onclick = "addLabel()"></li>
+									</ul>
+
+									<p id = "tip1" class = "show">还没有在地图上添加点标记，点击上面的按钮开始在地图上添加点标记
+									</p>
+									<p id = "tip2" class = "hidden">还没有在地图上添加线标记，点击上面的按钮开始在地图上添加线标记
+									</p>
+									<p id = "tip3" class = "hidden">还没有在地图上添加文字标记，点击上面的按钮开始在地图上添加文字标记
+									</p>
+								</div>
+								<p id = "warning_marker">最多只能添加10个标记</p>
+								<p id = "warning_label">最多只能添加10个文字标注</p>
+								<p id = "warning_polyline">最多只能添加10个线标注</p>
+								<div class = "l" id = "list_marker">
+								</div>
+								<div class = "l" id = "list_polyline">
+								</div>
+								<div class = "l" id = "list_label">
+								</div>
+							</div>
+						</div>
+
+						</li>
+					</ul>
+				</div>
+				<div id = "map_container" class = "map l" style = "margin-bottom: 10px">
+				</div>
+			</div>
+			
+
+		</div>
+		<!--主体部分 end-->
+
+	</body>
+
+</html>
+
+<script type = "text/javascript" src = "./js/jquery-1.11.1.min.js"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=eYf9sA6yVTFHlh9ytU4a0EYY" type = "text/javascript" ></script>
+<script type = "text/javascript" src = "./js/mapConfig.js"></script>
+<script type = "text/javascript" src = "./js/main.js"></script>
+<script type = "text/javascript" src = "./js/mapSettings.js"></script>
+<script type = "text/javascript" src = "./js/getCode.js"></script>
+<!--<script type="text/javascript" src="ZeroClipboard.js"></script>-->

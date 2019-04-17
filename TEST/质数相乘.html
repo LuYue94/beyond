@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body>
+
+	</body>
+	<script type="text/javascript">
+		var flag = true;
+		var mul = [];
+
+		for (var i = 2; i < 100; i++) {
+			for (var j = 2; j < i; j++) {
+				if (i % j === 0) {
+					flag = false;
+					break;
+				}
+			}
+			if (flag) {
+				var temp = [];
+				temp.push(i);
+				console.log(temp)
+				get(temp);
+			} else {
+				flag = true;
+				continue;
+			}
+		}
+		
+		function get(a) {
+			if (mul.length == 0) { 
+				mul.push(a[0]);
+				return;
+			}
+			var sumArr = mul[0].toString().split('');	//乘积数组
+			var temArr = a[0].toString().split('');	 	//当前质数
+			console.log(sumArr); 
+			console.log(temArr); 
+
+			var num=0;
+			for (var i = 0; i < temArr.length; i++) { //质数
+				var index = temArr.length-i; // 10的N次方
+				var all = [];
+				var shi = 0; //保存进位
+				for (var j = 0; j < sumArr.length; j++) { //乘积数组
+
+					if (shi) {
+						// res 乘积
+						res = sumArr[sumArr.length-1-j] * temArr[i] + shi;
+						shi = 0;
+					} else {
+						res = sumArr[sumArr.length-1-j] * temArr[i];
+					}
+					if (res >= 10) {
+						var ge = res % 10;		//个位
+						shi = (res - ge) / 10; 	//进位
+						all.unshift(ge);
+					} else {
+						all.unshift(res);
+					}
+				}
+				if (shi) {
+					all.unshift(shi);
+					shi = 0;
+				}
+				
+				num += all.join('')*Math.pow(10,index-1); // 保存每次循环的乘积并相加
+				mul[0] = num;//赋给乘积数组
+				console.log(num);
+				
+				// bug 数字太大无法相加，
+			}
+		}
+	</script>
+
+</html>

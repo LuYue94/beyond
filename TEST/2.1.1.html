@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<style>
+	#btn {
+		background: red;
+	}
+</style>
+
+<body>
+	<input type="email" name="" id="email" value="" />
+	<a id="btn">Next</a>
+</body>
+<script type="text/javascript">
+	var e = document.getElementById("email");
+	var btn = document.getElementById("btn");
+	e.onkeyup = function () {
+		var str = e.value;
+		var email = /\w@\w*\.\w/;
+		if (email.test(str)) {
+			btn.style.opacity = 1;
+		} else {
+			btn.style.opacity = 0.5;
+		}
+	}
+
+</script>
+
+</html>

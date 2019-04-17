@@ -1,0 +1,31 @@
+<script>
+	let json = { "code": "200", "message": "查找成功", "result": [{ "id": 67, "schoolId": 6923, "name": "测试章", "firstLatter": "C", "phone": "13109877890", "remark": "六年级1班班主任", "createTime": 1548144647000, "updateTime": 1548144647000 }, { "id": 68, "schoolId": 6923, "name": "测试章", "firstLatter": "C", "phone": "13109287790", "remark": "六年级2班班主任", "createTime": 1548144647000, "updateTime": 1548144647000 }, { "id": 69, "schoolId": 6923, "name": "测试章1", "firstLatter": "C", "phone": "13109877810", "remark": "六年级3班班主任", "createTime": 1548144647000, "updateTime": 1548144647000 }, { "id": 70, "schoolId": 6923, "name": "测试章2", "firstLatter": "C", "phone": "13109877811", "remark": "六年级4班班主任", "createTime": 1548144647000, "updateTime": 1548144647000 }, { "id": 71, "schoolId": 6923, "name": "测试章3", "firstLatter": "C", "phone": "13109877812", "remark": "六年级5班班主任", "createTime": 1548144647000, "updateTime": 1548144647000 }, { "id": 72, "schoolId": 6923, "name": "测试章4", "firstLatter": "C", "phone": "13109877813", "remark": "六年级6班班主任", "createTime": 1548144647000, "updateTime": 1548144647000 }, { "id": 73, "schoolId": 6923, "name": "测试章5", "firstLatter": "C", "phone": "13109877814", "remark": "六年级7班班主任", "createTime": 1548144647000, "updateTime": 1548144647000 }, { "id": 74, "schoolId": 6923, "name": "测试章6", "firstLatter": "C", "phone": "13109877815", "remark": "六年级8班班主任", "createTime": 1548144647000, "updateTime": 1548144647000 }, { "id": 75, "schoolId": 6923, "name": "测试章7", "firstLatter": "C", "phone": "13109877816", "remark": "六年级9班班主任", "createTime": 1548144647000, "updateTime": 1548144647000 }, { "id": 76, "schoolId": 6923, "name": "测试章8", "firstLatter": "C", "phone": "13109877817", "remark": "六年级10班班主任", "createTime": 1548144647000, "updateTime": 1548144647000 }, { "id": 77, "schoolId": 6923, "name": "测试章9", "firstLatter": "C", "phone": "13109877818", "remark": "六年级11班班主任", "createTime": 1548144647000, "updateTime": 1548144647000 }, { "id": 78, "schoolId": 6923, "name": "测试章10", "firstLatter": "C", "phone": "13109877819", "remark": "六年级12班班主任", "createTime": 1548144647000, "updateTime": 1548144647000 }, { "id": 79, "schoolId": 6923, "name": "历史", "firstLatter": "L", "phone": "16822221111", "remark": "历史老师", "createTime": null, "updateTime": 1548144677000 }] }
+	let arr = json.result
+
+	console.log('arr :', arr);
+
+	let map = new Map()
+
+	arr.forEach((element)=>{
+		let firstLatter = element.firstLatter
+		let name = element.name
+		if(map.has(firstLatter)){
+			map.get(firstLatter).push(element)
+		}else{
+			map.set(firstLatter,[element])
+		}
+	})
+
+	let brr = [...map]
+	console.log('brr :', brr);
+
+	// function aaa(a){
+	// 	console.log('a :', a);
+	// 	return function(obj){
+	// 		obj += '666'
+	// 		return obj
+	// 	}
+	// }
+	// let a = aaa(111)(222)
+	// console.log('a :', a);
+</script>

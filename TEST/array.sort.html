@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var array = ['qerw','sdf','aaff','sdfaxcv']
+    array = array.sort()
+    console.log(array)
+
+    var json = [
+        {name:'dfs'},
+        {name:'adfs'},
+        {name:'sdfs'},
+        {name:'fdfs'},
+        {name:'vdfs'},
+        {name:'zdfs'},
+    ]
+    json = json.sort(function(m,n){
+        return m.name.charCodeAt(0) - n.name.charCodeAt(0)
+    })
+    console.log(json)
+</script>
+</html>

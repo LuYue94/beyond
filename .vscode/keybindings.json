@@ -1,0 +1,30 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    {
+        "key": "ctrl+shift+s",
+        "command": "workbench.action.files.saveAll"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.deleteLines",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+right",
+        "command": "editor.action.nextSelectionMatchFindAction",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+left",
+        "command": "editor.action.previousSelectionMatchFindAction",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+shift+j",
+        "command": "docthis.documentThis"
+    },
+    {
+        "key": "ctrl+alt+d ctrl+alt+d",
+        "command": "-docthis.documentThis"
+    }
+]

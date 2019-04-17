@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		window.o = {
+			a:[1,2,3],
+			b:[2,3,4]
+		}
+		
+		var a = window.o["a"];
+		var b = window.o[b];
+		
+		a[0] = 4;
+		
+		console.log(a);
+		console.log(window.o);
+	</script>
+</html>

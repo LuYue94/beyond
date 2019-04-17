@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+	//callee放回正在执行的函数本身的引用，它是arguments的一个属性
+		var a = function(){
+			alert(arguments.callee);
+			//alert function a 的声明体
+		}
+		var b = function(){
+			a();
+		}
+		b();
+		
+		
+		// obj.fn
+		// caller相当于obj/this
+		// callee相当于fn
+	</script>
+</html>

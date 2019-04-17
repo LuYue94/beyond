@@ -1,0 +1,63 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "git.ignoreMissingGitWarning": true,
+    "explorer.openEditors.visible": 0,
+    "files.associations": {
+        "*.wxml": "wxml",
+        "*.cjson": "jsonc",
+        "*.wxss": "css",
+        "*.wxs": "javascript"
+    },
+    "explorer.confirmDelete": false,
+    "emmet.includeLanguages": {
+        "wxml": "html"
+    },
+    "minapp-vscode.disableAutoConfig": true,
+    "window.zoomLevel": 0,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "vue-html",
+        "html",
+        {
+            "language": "vue",
+            "autoFix": true
+        }
+    ],
+    "eslint.options": {
+        "plugins": [
+            "vue"
+        ]
+    },
+    "eslint.run": "onSave",
+    "eslint.autoFixOnSave": true,
+    "breadcrumbs.enabled": true,
+    "editor.minimap.enabled": false,
+    "window.title": "${rootName} -${activeEditorMedium}",
+    "todohighlight.isEnable": true,
+    "todohighlight.keywords": [
+        "TODO"
+    ],
+    "todohighlight.include": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.html",
+        "**/*.php",
+        "**/*.css",
+        "**/*.scss",
+        "**/*.vue",
+    ],
+    "explorer.confirmDragAndDrop": false,
+    "beautify.options": {
+        "css": {
+            "indent_size": 1
+        },
+    },
+    "gitlens.mode.active": "review",
+    "workbench.colorTheme": "One Dark Pro",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.suggestionActions.enabled": false,
+    "javascript.validate.enable": false,
+}

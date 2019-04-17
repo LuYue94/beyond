@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">click</button>
+    <b class="c"></b> 
+</body>
+<script type="text/javascript">
+	var data = {
+        "result": [
+            {
+                "cid": 1,
+                "name": "aaa",
+                "price": 4
+            }, {
+                "cid": 2,
+                "name": "bbb",
+                "price": 2
+            }, {
+                "cid": 3,
+                "name": "ccc",
+                "price": 5
+            }, {
+                "cid": 4,
+                "name": "ddd",
+                "price": 3
+            }, {
+                "cid": 5,
+                "name": "eee",
+                "price": 1
+            }
+        ],
+        "totalCount": 5
+    }
+		document.getElementById('btn').onclick=function(){
+			var newdata =data.result;
+			newdata.sort(function(a,b){
+				return a.price - b.price;//升序,false位置不动
+			})
+			console.log(newdata);
+		}
+
+</script>
+</html>
