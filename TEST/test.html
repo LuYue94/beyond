@@ -15,14 +15,32 @@
             border-right: 4px solid transparent;
             border-left: 4px solid transparent;
         }
-
     </style>
 </head>
 
 <body>
     <div class="caret">
-        
+
     </div>
 </body>
+<script>
+    let a = [1, 2, 3]
+    Array.prototype.forEach.call(a, function (c) {
+        console.log('c :', c);
+    })
+
+
+    function partial(fn, arg) {
+        return function () {
+            return fn(arg)
+        }
+    }
+    function fn(arg) {
+        console.log('arg :', arg);
+    }
+
+    partial(fn, 666)()
+
+</script>
 
 </html>

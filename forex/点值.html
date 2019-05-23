@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+
+    <script>
+        $.ajax({
+            type: "post",
+            url: "https://cn.investing.com/tools/Service/pip",
+            data: {
+                number_format: 'us',
+                account_currency: 12,
+                trade_size: 10000,
+            },
+            async: true,
+            contentType: "application/json",
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+            }
+        })
+
+
+    </script>
+</body>
+
+
+</html>
