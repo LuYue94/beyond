@@ -19,3 +19,4 @@ clone的时候，可以指定深度，如下，为1即表示只克隆最近一�
 
 git clone git://xxoo --depth 1
 
+
