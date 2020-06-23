@@ -60,4 +60,7 @@
     "javascript.updateImportsOnFileMove.enabled": "always",
     "typescript.suggestionActions.enabled": false,
     "javascript.validate.enable": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
 }
