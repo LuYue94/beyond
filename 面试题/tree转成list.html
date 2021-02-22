@@ -1,0 +1,34 @@
+<script>
+    // let tree = [15, [1, 1, 2], { a: 3, b: [4, 7, 8] }, [6, 7, 8, 9, [11, 12, [12, 13, [14]]]]];
+    let tree = [15, [1, new Number(1), 2], { a: 3, b: [4, 7, 8] }, [6, 7, 8, 9, [11, 12, [12, 13, [14]]]]];
+
+    let result = []
+    function treeToArray(tree) {
+        for (var i = 0; i < tree.length; i++) {
+            let item = tree[i]
+            if (typeof item == 'array') {
+                treeToArray(tree[i])
+            }
+
+            if (typeof item == 'object') {
+                if (item instanceof Number) {
+                    let num = +item
+                    result.push(num)
+                } else {
+                    let list = Object.values(item)
+                    treeToArray(list)
+                }
+            }
+
+            if (typeof item == 'number') {
+                result.push(item)
+            }
+        }
+        return result
+    }
+
+    treeToArray(tree)
+    console.log('result', result)
+    // TODO 去重，排序
+
+</script>

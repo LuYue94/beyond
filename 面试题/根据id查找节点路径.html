@@ -1,0 +1,71 @@
+<script>
+    // 腾讯面试题2020
+    const tree = [{
+        id: "ab",
+        children: [{
+            id: "cd",
+            children: [
+                {
+                    id: "ef",
+                    children: []
+                },
+                {
+                    id: "xf",
+                    children: []
+                },
+                {
+                    id: "af",
+                    children: [{
+                        id: "hf",
+                        children: [
+                            {
+                                id: "cx",
+                                children: []
+                            },
+                            {
+                                id: "ey",
+                                children: []
+                            },
+                            {
+                                id: "hh",
+                                children: [
+                                    {
+                                        id: "rf",
+                                        children: [
+                                            {
+                                                id: "ej",
+                                                children: []
+                                            },
+                                        ]
+                                    },
+                                ]
+                            },
+                        ]
+                    }]
+                }
+            ]
+        }]
+    }]
+
+    function findPathbyId(tree, id, path) {
+        if (typeof path == 'undefined') {
+            path = []
+        }
+        for (var i = 0; i < tree.length; i++) {
+            var tempPath = [...path]
+            tempPath.push(tree[i].id)
+            if (tree[i].id == id) {
+                return tempPath
+            }
+            if (tree[i].children) {
+                let reuslt = findPathbyId(tree[i].children, id, tempPath)
+                if (reuslt) {
+                    return reuslt
+                }
+            }
+        }
+    }
+    let res = findPathbyId(tree, 'ey')
+    console.log('res',res)
+
+</script>
