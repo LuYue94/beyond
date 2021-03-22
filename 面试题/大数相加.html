@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        a = "9"
+        b = "9"
+        function add(a, b) {
+            let arrA = a.split('').reverse()
+            let arrB = b.split('').reverse()
+
+            let lengthA = arrA.length
+            let lengthB = arrB.length
+
+            let short, long = []
+
+            if (lengthA > lengthB) {
+                long = arrA
+                short = arrB
+            } else {
+                long = arrB
+                short = arrA
+            }
+
+            console.log('long',long)
+            console.log('short',short)
+
+            let resArr =new Array(long+1).fill(0)
+            console.log('resArr',resArr)
+
+            for (let i = 0; i < long.length; i++) {
+                let sum = 0;
+                if(i<short.length){
+                    sum = Number.parseInt(long[i]) + Number.parseInt(short[i]) + resArr[i]
+                }else{
+                    sum = Number.parseInt(long[i]) + resArr[i]
+                }
+                console.log('sum',sum)
+
+                if (sum >= 10) {
+                    resArr[i] = sum - 10
+                    resArr[i + 1] = 1
+                } else {
+                    resArr[i] = sum
+                    resArr[i + 1] = 0
+                }
+            }
+
+            let result = resArr.reverse().join('')
+            if(result[0]==0){
+              result = result.slice(1,result.length)
+            }
+            return result
+        }
+
+        let result = add(a, b)
+        console.log('result', result)
+
+
+    </script>
+</body>
+
+</html>
